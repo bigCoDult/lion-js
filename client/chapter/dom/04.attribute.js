@@ -2,18 +2,17 @@
 /* HTML Attributes vs. DOM Properties   */
 /* ------------------------------------ */
 
-
 /* HTML 속성 ------------------------------------------------------------- */
 
-// 브라우저는 HTML 태그를 해석해 DOM 객체를 만들 때 HTML 표준 속성을 인식하고, 
-// 이 표준 속성을 사용해 DOM 프로퍼티를 생성합니다. 표준 속성이 아닌 경우, 
+// 브라우저는 HTML 태그를 해석해 DOM 객체를 만들 때 HTML 표준 속성을 인식하고,
+// 이 표준 속성을 사용해 DOM 프로퍼티를 생성합니다. 표준 속성이 아닌 경우,
 // 이에 매핑하는 DOM 프로퍼티가 생성되지 않습니다.
 // HTML 속성 값은 항상 문자열입니다.
 
 const first = getNode('.first');
-console.log(first);
-console.dir(first.id);
-console.dir(first.className);
+// console.log(first);
+// console.dir(first.id);
+// console.dir(first.className);
 
 /* DOM 프로퍼티 ----------------------------------------------------------- */
 
@@ -23,7 +22,6 @@ console.dir(first.className);
 // - 대·소문자를 구분하므로 `elem.nodeType`이 아닌, `elem.NoDeTyPe`는 동작하지 않습니다.
 // - DOM 프로퍼티는 HTML 속성과 달리 값이 항상 문자열이 아닙니다.
 
-
 /* DOM 프로퍼티 검토 ------------------------------------------------------- */
 
 // - elementNode.hasAttribute(name) – 속성 존재 여부 확인
@@ -32,15 +30,39 @@ console.dir(first.className);
 // - elementNode.removeAttribute(name) – 속성값을 지움
 // - elementNode.attributes – 열거 가능한(iterable) 속성 집합을 반환함
 
-console.dir(first.hasAttribute('size'));
+// console.dir(first.hasAttribute('size'));
 
+function getAttr(node, prop) {
+  if (typeof node === 'string') {
+    node = getNode(node);
+  }
+  return node.getAttribute(prop);
+}
 
+function setAttr(node, prop, value) {
+  if (typeof node === 'string') {
+    node = getNode(node);
+  }
+  if (typeof prop !== 'string') {
+    throw new TypeError(
+      'setAttr 함수의 두번째 알규먼트는 문자열로 주어져야 합니다'
+    );
+  }
+  if (!node[prop] && prop !== 'class') {
+    node.dataset[prop] = value;
+    return;
+  }
 
+  node.setAttribute(prop, value);
+}
 
+setAttr('.first', 'class', '인사멘트');
+console.log(first);
+function attr(node, prop, value) {
+  return (!value) ? getAttr(node, prop) : setAttr(node, prop, value);
+}
 
-
-
-
+// console.log(attr('.first', 'id'));
 
 /* 비표준 속성, 프로퍼티 설정 ------------------------------------------------- */
 
