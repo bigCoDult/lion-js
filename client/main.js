@@ -1,3 +1,1 @@
-console.log('hello js!');
-
-
+import { getNode } from './lib/dom/getNode.js';
