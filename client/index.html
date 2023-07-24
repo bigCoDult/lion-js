@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
     <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon" />
-    
+
     <script src="./main.js" type="module"></script>
     <title>랜덤 다이스 🎲</title>
   </head>
@@ -14,8 +14,12 @@
     <article id="RecordCouter" class="RecordDice">
       <h1 class="logo">
         <img src="./assets/logo.png" alt="레코드 카운터" height="200" />
-        <div class="star right-star"><img src="./assets/star.png" alt="반짝이별" /></div>
-        <div class="star left-star"><img src="./assets/star.png" alt="반짝이별" /></div>
+        <div class="star right-star">
+          <img src="./assets/star.png" alt="반짝이별" />
+        </div>
+        <div class="star left-star">
+          <img src="./assets/star.png" alt="반짝이별" />
+        </div>
       </h1>
       <div class="bg"></div>
       <div id="diceContainer">
@@ -28,17 +32,20 @@
           <div class="bottom"></div>
         </div>
       </div>
-  
-  
+
       <div class="buttonGroup">
-        <button type="button">주사위 <br />
-          굴리기</button>
+        <button type="button">
+          주사위 <br />
+          굴리기
+        </button>
         <button type="button" disabled>기록</button>
         <button type="button" disabled>초기화</button>
       </div>
       <div class="recordListWrapper" hidden>
         <table class="recordList">
-          <caption>레코드 리스트</caption>
+          <caption>
+            레코드 리스트
+          </caption>
           <div class="line"></div>
           <thead>
             <tr>
@@ -48,11 +55,11 @@
             </tr>
           </thead>
           <tbody>
-          <!-- <tr>
+            <tr>
               <td>0</td>
               <td>5</td>
               <td>5</td>
-            </tr> -->
+            </tr>
           </tbody>
         </table>
       </div>
