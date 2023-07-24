@@ -1,14 +1,3 @@
-
-
-
-
-
-
-
-
-export function isNumericString(data){
-  return isNaN(Number(data))
+export function isNumericString(data) {
+  return isNaN(Number(data));
 }
-
-
-
