@@ -1,3 +1,1 @@
-console.log('hello js!');
-
-
+import{} from "./lib/index.js"
