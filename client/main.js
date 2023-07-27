@@ -1,15 +1,16 @@
 /* global gsap */
 
 import {
+  attr,
   tiger,
   delayP,
   insertLast,
   getNode as $,
   changeColor,
   renderSpinner,
+  clearContents,
   renderUserCard,
   renderEmptyCard,
-  attr,
 } from './lib/index.js';
 
 // [phase-1]
@@ -27,14 +28,17 @@ import {
 // 3. 함수 분리
 
 // [phase-3]
-//
+// json-server 구성
+// data 설계
+// get, delete 통신 localhost
+// delete => 리랜더링(clear,render)
 
 const userCardInner = $('.user-card-inner');
 
 async function renderUserList() {
   renderSpinner(userCardInner);
   try {
-    // await delayP({timeout:2000});
+    await delayP();
 
     gsap.to('.loadingSpinner', {
       opacity: 0,
@@ -75,8 +79,13 @@ function handleDelete(e) {
 
   if (!article || !button) return;
 
-  // console.log( article.dataset.index );
-  console.log(attr(article, 'data-index'));
+  const id = attr(article, 'data-index').slice(5);
+
+  tiger.delete(`http://localhost:3000/users/${id}`).then(() => {
+    // 컨텐츠 항목 전체 지우기
+    clearContents(userCardInner);
+    renderUserList();
+  });
 }
 
 userCardInner.addEventListener('click', handleDelete);
